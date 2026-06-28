@@ -1,49 +1,24 @@
 const express = require('express');
 const router = express.Router();
-const { 
-    getTasks, 
-    getStats, 
-    createTask, 
-    getTaskById, 
-    updateTask, 
-    deleteTask 
-} = require('../controllers/taskController');
+const taskController = require('../controllers/taskController');
 
-/**
- * @route   GET /api/tasks
- * @desc    Get all tasks (with Search, Filter, and Sort)
- */
-router.get('/', getTasks);
+// 1. Get all tasks (includes Search, Filter, and Sort logic)
+router.get('/', taskController.getTasks);
 
-/**
- * @route   GET /api/tasks/stats
- * @desc    Get counts for Dashboard Statistics
- * @note    Must be placed BEFORE /:id route
- */
-router.get('/stats', getStats);
+// 2. Get Dashboard Statistics (Total, Pending, Completed, In Progress)
+// NOTE: This MUST stay above the /:id route to work properly
+router.get('/stats', taskController.getStats);
 
-/**
- * @route   POST /api/tasks
- * @desc    Create a new task
- */
-router.post('/', createTask);
+// 3. Create a new Task
+router.post('/', taskController.createTask);
 
-/**
- * @route   GET /api/tasks/:id
- * @desc    Get a single task by ID
- */
-router.get('/:id', getTaskById);
+// 4. Get a single Task details by ID
+router.get('/:id', taskController.getTaskById);
 
-/**
- * @route   PUT /api/tasks/:id
- * @desc    Update an existing task
- */
-router.put('/:id', updateTask);
+// 5. Update an existing Task by ID
+router.put('/:id', taskController.updateTask);
 
-/**
- * @route   DELETE /api/tasks/:id
- * @desc    Delete a task
- */
-router.delete('/:id', deleteTask);
+// 6. Delete a Task by ID
+router.delete('/:id', taskController.deleteTask);
 
 module.exports = router;
