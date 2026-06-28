@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-// This checks if there is a live URL, otherwise it uses localhost
+// IMPORTANT: Do NOT use localhost here if you are deploying!
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-const API = axios.create({ 
-    baseURL: API_URL 
-});
+const API = axios.create({ baseURL: API_URL });
 
 export const getTasks = (search = '', status = '', priority = '', sort = 'newest') => 
     API.get(`/tasks?search=${search}&status=${status}&priority=${priority}&sort=${sort}`);
