@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // IMPORTANT: Do NOT use localhost here if you are deploying!
-const API_URL = import.meta.env.VITE_API_URL || 'https://taskflow-backend-7kpx.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'https://tasktracker-idhy.onrender.com/api';
 
 const API = axios.create({ baseURL: API_URL });
 
